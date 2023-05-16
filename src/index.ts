@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import * as http from "node:http";
 import * as https from "node:https";
 
+import cors from "cors";
 import express from "express";
 
 import { Tunnels } from "./config/Tunnels";
@@ -11,6 +12,24 @@ import { logHandler } from "./utils/logHandler";
 // anonymous IIFE for async/await
 (async () => {
   const app = express();
+
+  const allowedOrigins = [
+    "https://naomi.exposed",
+    "https://www.naomi.exposed",
+    "http://localhost:4200",
+  ];
+
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+    })
+  );
 
   // mount your middleware and routes here
 
