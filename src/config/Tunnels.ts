@@ -11,4 +11,8 @@ export const Tunnels = [
     name: "Angular",
     url: "https://angular.naomi.exposed",
   },
+  {
+    name: "Development",
+    url: "https://dev.naomi.exposed",
+  },
 ];
