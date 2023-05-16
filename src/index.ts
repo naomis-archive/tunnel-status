@@ -41,21 +41,21 @@ import { logHandler } from "./utils/logHandler";
 
   const httpServer = http.createServer(app);
 
-  httpServer.listen(7080, () => {
-    logHandler.log("http", "http server listening on port 7080");
+  httpServer.listen(8080, () => {
+    logHandler.log("http", "http server listening on port 8080");
   });
 
   if (process.env.NODE_ENV === "production") {
     const privateKey = await readFile(
-      "/etc/letsencrypt/live/example.com/privkey.pem",
+      "/etc/letsencrypt/live/status.naomi.exposed/privkey.pem",
       "utf8"
     );
     const certificate = await readFile(
-      "/etc/letsencrypt/live/example.com/cert.pem",
+      "/etc/letsencrypt/live/status.naomi.exposed/cert.pem",
       "utf8"
     );
     const ca = await readFile(
-      "/etc/letsencrypt/live/example.com/chain.pem",
+      "/etc/letsencrypt/live/status.naomi.exposed/chain.pem",
       "utf8"
     );
 
@@ -67,8 +67,8 @@ import { logHandler } from "./utils/logHandler";
 
     const httpsServer = https.createServer(credentials, app);
 
-    httpsServer.listen(7443, () => {
-      logHandler.log("http", "https server listening on port 7443");
+    httpsServer.listen(8443, () => {
+      logHandler.log("http", "https server listening on port 8443");
     });
   }
 })();
