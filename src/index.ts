@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import * as http from "node:http";
 import * as https from "node:https";
 
-import * as express from "express";
+import express from "express";
 
 import { Tunnels } from "./config/Tunnels";
 import { getStatus } from "./utils/getStatus";
